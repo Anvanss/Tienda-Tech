@@ -3,10 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practice</title>
+    <meta name="description" content="TechStore - Productos tecnológicos TOP">
+    <title>TechStore</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Etiqueta master</h1>
-    <p>Funcionando con normalidad</p>
+<!-- HEADER -->
+ <header>
+    <div class="header-contenido">
+        <h1> TechStore</h1>
+        <nav>
+            <a href="#productos">Productos</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <button class="carrito-btn" onclick="abrirCarrito()">
+            🛒 Carrito <span id="contador-carrito">0</span>
+        </button>
+    </div>
+ </header>
+
+ <!-- HERO -->
+<section id="hero">
+    <div class="hero-texto">
+        <h2>Tecnología que transforma</h2>
+        <p>Los mejores productos Tech con envío a toda Colombia</p>
+        <a href="#productos" class="btn-principal">Ver productos</a>
+    </div>
+</section>
+
+<!-- PRODUCTOS -->
+ <section id="productos">
+    <h2>Nuestros productos</h2>
+    <div class="productos-grid" id="productos-grid">
+
+        <article class="producto-card">
+            <div class="producto-img">🎧</div>
+            <h3>Audífonos Pro X</h3>
+            <p>Sonido envolvente, cancelación de ruido activa</p>
+            <span class="precio">$189.000 COP</span>
+            <button class="btn-agregar" onclick="agregarAlCarrito('Audífonos Pro X', 189000)">
+                Agregar al carrito
+            </button>
+        </article>
+
+        <article class="producto-card">
+            <div class="producto-img">⌨️</div>
+            <h3>Teclado Mecánico RGB</h3>
+            <p>Switches Cherry MX, retroiluminación personalizable</p>
+            <span class="precio">$320.000 COP</span>
+            <button class="btn-agregar" onclick="agregarAlCarrito('Teclado Mecánico RGB', 320000)">
+                Agregar al carrito
+            </button>
+        </article>
+
+        <article class="producto-card">
+            <div class="producto-img">🖱️</div>
+            <h3>Mouse Gamer 4K</h3>
+            <p>4000 DPI, diseño ergonómico, 7 botones</p>
+            <span class="precio">$145.000 COP</span>
+            <button class="btn-agregar" onclick="agregarAlCarrito('Mouse Gamer 4K', 145000)">
+                Agregar al carrito
+            </button>
+        </article>
+
+        <article class="producto-card">
+            <div class="producto-img">💻</div>
+            <h3>Webcam HD 1080p</h3>
+            <p>Ideal para videollamadas y streaming</p>
+            <span class="precio">$210.000 COP</span>
+            <button class="btn-agregar" onclick="agregarAlCarrito('Webcam HD 1080p', 210000)">
+                Agregar al carrito
+            </button>
+        </article>
+
+        <article class="producto-card">
+            <div class="producto-img">🔌</div>
+            <h3>Hub USB-C 7 en 1</h3>
+            <p>HDMI, USB 3.0, lector de tarjetas, carga rápida</p>
+            <span class="precio">$98.000 COP</span>
+            <button class="btn-agregar" onclick="agregarAlCarrito('Hub USB-C 7 en 1', 98000)">
+                Agregar al carrito
+            </button>
+        </article>
+
+        <article class="producto-card">
+            <div class="producto-img">📱</div>
+            <h3>Soporte Monitor Doble</h3>
+            <p>Ajustable, resistente, para monitores hasta 32"</p>
+            <span class="precio">$175.000 COP</span>
+            <button class="btn-agregar" onclick="agregarAlCarrito('Soporte Monitor Doble', 175000)">
+                Agregar al carrito
+            </button>
+        </article>
+
+    </div>
+
+ </section>
+
+  <!-- NOSOTROS -->
+    <section id="nosotros">
+        <div class="nosotros-contenido">
+        <h2>¿Quiénes somos?</h2>
+        <p>TechStore es una tienda colombiana especializada en productos tecnológicos de calidad. Llevamos - años llevando la mejor tech a hogares y oficinas en todo el país.</p>
+        </div>
+    </section>
+
+ <!-- CONTACTO -->
+    <section id="contacto">
+        <h2>Contáctanos</h2>
+        <form id="form-contacto" onsubmit="enviarFormulario(event)">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="tucorreo@gmail.com" required>
+
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿En qué te podemos ayudar?"></textarea>
+
+            <button type="submit" class="btn-principal">Enviar mensaje</button>
+        </form>
+    </section>
+
+<!-- CARRITO (panel lateral) -->
+    <div id="overlay" onclick="cerrarCarrito()"></div>
+    <aside id="carrito-panel">
+        <div class="carrito-header">
+            <h3>Tu carrito</h3>
+            <button onclick="cerrarCarrito()">✕</button>
+        </div>
+        <div id="carrito-items"></div>
+        <div class="carrito-total">
+            <strong>Total: <span id="total-precio">$0 COP</span></strong>
+        </div>
+        <button class="btn-principal" onclick="irAPago()">Ir a pagar</button>
+    </aside>
+
+<!-- MODAL DE PAGO -->
+    <div id="modal-pago">
+        <div class="modal-contenido">
+            <h3>Completa tu pago</h3>
+            <p id="resumen-pago"></p>
+
+            <label for="nombre-tarjeta">Nombre en la tarjeta</label>
+            <input type="text" id="nombre-tarjeta" placeholder="Ana García">
+
+            <label for="numero-tarjeta">Número de tarjeta</label>
+            <input type="text" id="numero-tarjeta" placeholder="1234 5678 9012 3456" maxlength="19">
+
+            <div class="tarjeta-fila">
+                <div>
+                    <label for="expiracion">Vencimiento</label>
+                    <input type="text" id="expiracion" placeholder="MM/AA" maxlength="5">
+                </div>
+                <div>
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="123" maxlength="3">
+                </div>
+            </div>
+
+            <button class="btn-principal" onclick="procesarPago()">Pagar ahora</button>
+            <button class="btn-cancelar" onclick="cerrarPago()">Cancelar</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 TechStore Colombia · Todos los derechos reservados</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+
 </body>
 </html>
