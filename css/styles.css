@@ -1,0 +1,264 @@
+/* VARIABLES Y BASE */
+
+:root {
+  --color-principal: #0a0a0a;
+  --color-acento: #f5c518;
+  --color-texto: #333333;
+  --color-fondo: #f8f9fa;
+  --color-blanco: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--color-texto);
+}
+
+/* NAVBAR */
+
+.navbar {
+  background-color: var(--color-principal);
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.navbar-brand {
+  color: var(--color-acento) !important;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  color: var(--color-blanco) !important;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--color-acento) !important;
+}
+
+/* HERO */ 
+
+#hero {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+#hero h2 {
+  font-size: 3.5rem;
+  line-height: 1.2;
+}
+
+#hero p {
+  font-size: 1.3rem;
+  opacity: 0.85;
+}
+
+/* PRODUCTOS */
+
+#productos h2 {
+  font-size: 2rem;
+  color: var(--color-principal);
+}
+
+.producto-img {
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.card {
+  border: none !important;
+  border-radius: 12px !important;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12) !important;
+}
+
+.card .badge {
+  font-size: 0.95rem !important;
+  padding: .5rem .85rem;
+  border-radius: 8px;
+}
+
+/* NOSOTROS */
+
+#nosotros {
+  background-color: var(--color-blanco);
+}
+
+#nosotros h2 {
+  color: var(--color-principal);
+}
+
+/* CONTACTO */
+
+#contacto h2 {
+  color: var(--color-principal);
+}
+
+.form-control {
+  border-radius: 8px !important;
+  border: 1.5px solid #dee2e6 !important;
+  padding: .7rem 1rem !important;
+  transition: border-color 0.2s !important;
+}
+
+.form-control:focus {
+  border-color: var(--color-acento) !important;
+  box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.15) !important;
+}
+
+/* BOTONES */
+
+.btn-warning {
+  background-color: var(--color-acento) !important;
+  border-color: var(--color-acento) !important;
+  color: var(--color-principal) !important;
+  border-radius: 8px !important;
+  transition: opacity 0.2s, transform 0.1s !important;
+}
+
+.btn-warning:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn-dark {
+  border-radius: 8px !important;
+  transition: background 0.2s, transform 0.1s !important;
+}
+
+.btn-dark:hover {
+  transform: translateY(-1px);
+}
+
+/* OVERLY (fondo oscuro carrito)*/
+
+#overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1040;
+}
+
+#overlay.activo {
+  display: block;
+}
+
+/* CARRITO PANEL LATERAL */
+
+#carrito-panel {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 380px;
+  height: 100vh;
+  background: var(--color-blanco);
+  z-index: 1050;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+#carrito-panel.abierto {
+  right: 0;
+}
+
+.carrito-header {
+  background: var(--color-principal);
+  color: var(--color-blanco);
+}
+
+.carrito-header h5 {
+  color: var(--color-acento);
+}
+
+/* Item dentro del carrito */
+.carrito-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .75rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: .9rem;
+}
+
+.carrito-item button {
+  background: none;
+  border: none;
+  color: #dc3545;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 .25rem;
+}
+
+/* MODAL PAGO */
+
+#modal-pago {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1060;
+  align-items: center;
+  justify-content: center;
+}
+
+#modal-pago.activo {
+  display: flex;
+}
+
+.modal-contenido {
+  background: var(--color-blanco);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 460px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* FOOTER */
+
+footer {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+}
+
+/* RESPONSIVE EXTRA */
+
+@media (max-width: 576px) {
+  #hero h2 {
+    font-size: 2.2rem;
+  }
+
+  #carrito-panel {
+    width: 100%;
+    right: -100%;
+  }
+}
